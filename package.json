@@ -1,0 +1,15 @@
+{
+  "name": "deye-grid-bot",
+  "version": "1.0.0",
+  "description": "Telegram-сповіщення про зникнення/появу світла для інверторів Deye (Deye Cloud OpenAPI + Cloudflare Workers)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "deploy": "wrangler deploy",
+    "logs": "wrangler tail",
+    "setup": "bash setup.sh"
+  },
+  "engines": { "node": ">=22.12" },
+  "license": "MIT"
+}

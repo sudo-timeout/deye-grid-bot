@@ -1,0 +1,21 @@
+name = "deye-grid-bot"
+main = "src/index.js"
+compatibility_date = "2025-10-01"
+
+# Логер Deye вивантажує дані раз на ~2 хв — опитуємо так само
+# (~22 тис. запитів/міс при ліміті Deye ~100 тис.)
+[triggers]
+crons = ["*/2 * * * *"]
+
+# Сховище стану. setup.sh створює його сам і дописує id.
+# Вручну: `npx wrangler kv namespace create STATE`, потім додайте рядок id = "..."
+[[kv_namespaces]]
+binding = "STATE"
+
+[vars]
+DEYE_BASE_URL = "https://eu1-developer.deyecloud.com"  # дата-центр EMEA (Україна, Європа)
+DEYE_DEVICE_SN = ""   # порожньо = знайти інвертор в акаунті автоматично
+SOC_LOW = "30"        # попередження, коли заряд <= цього %
+BATTERY_KWH = "0"     # ємність батареї, кВт·год; 0 = взяти з інвертора (BatteryRatedCapacity × 51.2 В)
+MIN_SOC = "20"        # до якого % рахувати "на скільки вистачить"
+SUMMARY_HOUR = "22"   # о котрій (за Києвом) надсилати підсумок дня; -1 = вимкнути
