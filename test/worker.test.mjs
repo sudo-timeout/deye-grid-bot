@@ -24,7 +24,7 @@ beforeEach(() => {
     TELEGRAM_CHAT_IDS: "42",
     ADMIN_KEY: "k",
     BATTERY_KWH: "0",
-    SUMMARY_HOUR: String((kyivHour() + 1) % 24), // підсумок не заважає, доки тест сам не попросить
+    SUMMARY_HOUR: "-1", // підсумок вимкнено, доки тест сам не попросить
     STATE: {
       get: async (k, t) => (kv.has(k) ? (t === "json" ? JSON.parse(kv.get(k)) : kv.get(k)) : null),
       put: async (k, v) => kv.set(k, v),
@@ -84,7 +84,7 @@ test("зникнення і повернення світла зі статис�
   Object.assign(reading, { V: 1.8, F: 0, batt: 600 });
   await tick();
   assert.match(texts().at(-1), /Світло зникло/);
-  assert.match(texts().at(-1), /Вистачить приблизно/);
+  assert.match(texts().at(-1), /⏳ Вистачить до .+ \(~\d+ год \d+ хв\)/);
   reading.soc = 64;
   await tick();
   Object.assign(reading, { V: 228, F: 50, soc: 66, batt: -1900 });

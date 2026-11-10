@@ -19,3 +19,10 @@ SOC_LOW = "30"        # попередження, коли заряд <= цьо�
 BATTERY_KWH = "0"     # ємність батареї, кВт·год; 0 = взяти з інвертора (BatteryRatedCapacity × 51.2 В)
 MIN_SOC = "20"        # до якого % рахувати "на скільки вистачить"
 SUMMARY_HOUR = "22"   # о котрій (за Києвом) надсилати підсумок дня; -1 = вимкнути
+
+# Опційно: секрет HEALTHCHECK_URL (healthchecks.io) — сповіщення, якщо бот перестане працювати.
+
+# --- Графіки відключень (опційно, потрібна підписка Alerts Energy та секрет ALERTS_ENERGY_KEY) ---
+SCHEDULE_AREA = ""      # slug області, напр. "kyivska-oblast", "kyiv" (як в адресі alerts.energy)
+SCHEDULE_SUPPLIER = ""  # оператор (initiator), напр. "kyivska_oblast_oblenergo"; список — /schedule?key=…
+SCHEDULE_QUEUE = ""     # ваша черга, напр. "3.2"
